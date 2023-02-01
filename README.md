@@ -32,9 +32,9 @@ An Ethereum Decentralized Application for a Donation contract factory.
 
 ### Implementation
 <br>
-The [Smart Contract](contract/Contract.sol) implements three functions:
 
-```bash
+The [Smart Contract](contract/Contract.sol) implements three functions:
+```solidity
     function getBalance()
 
     function transfer()
@@ -43,7 +43,7 @@ The [Smart Contract](contract/Contract.sol) implements three functions:
 ```
 
 The [Contract Factory](contract/Contract.sol) implements seven functions:
-```bash
+```solidity
     function createDonation(string memory name, uint goal, address owner)
 
     function getDonationsNames()
