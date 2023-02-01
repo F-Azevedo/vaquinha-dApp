@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="alert alert-success" role="alert">
+        <strong>Atenção:</strong> Uma vaquinha pode ser coletada.
+    </div>
+
+    <section>
+
+        <div id="header">
+            <h1>Vaquinha D'App</h1>
+            <span>No botão abaixo você pode abrir uma nova vaquinha.</span>
+            <div id="button_wrapper">
+                <button id="modalVaquinhaButton" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalVaquinha">
+                    Criar Vaquinha
+                </button>
+                <button id="refreshPage" type="button" class="btn btn-dark">
+                    Atualizar
+                </button>
+            </div>
+            <span class="text-muted">O site atualiza a cada 10 segundos, caso queira atualizar antes use o botão</span>
+        </div>
+
+        <div id="wrapper" class="wrapper"></div>
+
+    </section>
+
+    <!-- Modal Criação de Vaquinha -->
+    <div class="modal fade" id="modalVaquinha" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Vaquinha</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <small class="form-text text-muted">O valor só poderá ser resgatado quando a meta for batida.</small>
+                    </div>
+                    <form id="creationForm">
+                        <div class="form-group">
+                            <label for="donationNameCreation">Nome da Vaquinha</label>
+                            <input type="text" class="form-control" placeholder="Comprar presente do Varejão" id="donationNameCreation">
+                            <small class="form-text text-muted">Dê um nome descritivo a sua campanha.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="donationOwnerCreation">Dono da Vaquinha</label>
+                            <input type="text" class="form-control" placeholder="0x78731D3Ca6b7E34aC0F824c42a7cC18A495cabaB" id="donationOwnerCreation">
+                            <small class="form-text text-muted">Endereço da carteira.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="donationValueCreation">Valor</label>
+                            <input type="number" value=1 min=1 max=9 class="form-control" id="donationValueCreation">
+                            <small class="form-text text-muted">O valor sera submetido como Valor * Expoente</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="selectExpoentCreation">Expoente 10^</label>
+                            <select id="selectExpoentCreation">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                            </select>
+                            <small class="form-text text-muted">1*10^0 equivale a 1 Wei.</small>
+                            <small class="form-text text-muted">1*10^18 equivale a 1 Goerli.</small>
+                        </div>
+
+                        <div class="d-flex justify-content-center">
+                            <button id="submitCreationForm" type="button" class="btn btn-dark" style="float:center">Criar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal de Doação -->
+    <div class="modal fade" id="modalDoacao" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Doação</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="donationForm">
+                        <div class="form-group">
+                            <label for="donatedValue">Valor</label>
+                            <input type="number" value=1 min=1 max=9 class="form-control" id="donatedValue">
+                            <small class="form-text text-muted">O valor sera submetido como Valor * Expoente</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="selectExpoentDonation">Expoente 10^</label>
+                            <select id="selectExpoentDonation">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                            </select>
+                            <small class="form-text text-muted">1*10^0 equivale a 1 Wei.</small>
+                            <small class="form-text text-muted">1*10^18 equivale a 1 Goerli.</small>
+                        </div>
+
+                        <div class="d-flex justify-content-center">
+                            <button id="submitDonationForm" type="button" class="btn btn-success" style="float:center">Confirmar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Importing Ethers.js script -->
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
+    <script src="js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+</body>
+</html>
