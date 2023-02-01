@@ -435,7 +435,7 @@ async function loadVaquinhas() {
         }
 		refresh(content);
     } catch (err) {
-        alert("Error fetching list of names. " + err.message);
+        console.log("Error fetching list of names. " + err.message);
     } finally {
 		refreshPage.innerHTML = "Atualizar";
 		refreshPage.disabled = false;
